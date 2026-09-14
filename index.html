@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Para mi Lunita ♡</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    min-height:100vh;
+    overflow:hidden;
+    font-family:Arial,sans-serif;
+    color:#fff;
+
+    background:
+    radial-gradient(circle at 15% 15%,rgba(210,170,240,.35),transparent 30%),
+    radial-gradient(circle at 85% 80%,rgba(255,180,215,.30),transparent 32%),
+    linear-gradient(145deg,#17121d,#26182d,#1b1522);
+}
+
+
+/* FASES */
+
+.fase{
+    position:absolute;
+    width:100%;
+    height:100vh;
+
+    display:none;
+    justify-content:center;
+    align-items:center;
+
+    padding:25px;
+    text-align:center;
+
+    background:
+    radial-gradient(circle at 20% 20%,rgba(220,180,245,.18),transparent 30%),
+    radial-gradient(circle at 80% 80%,rgba(255,170,215,.16),transparent 30%);
+}
+
+.fase.activa{
+    display:flex;
+    animation:entrada .8s ease;
+}
+
+
+/* CONTENIDO */
+
+.contenido{
+    width:100%;
+    max-width:720px;
+    padding:30px 25px;
+}
+
+
+/* KUROMI */
+
+.kuromi{
+    width:185px;
+    max-width:55vw;
+    margin-bottom:18px;
+
+    filter:
+    drop-shadow(0 0 12px rgba(231,170,230,.45))
+    drop-shadow(0 0 25px rgba(255,170,215,.20));
+
+    animation:flotar 3s ease-in-out infinite;
+}
+
+.kuromi-pequena{
+    width:135px;
+    max-width:42vw;
+}
+
+
+/* TITULOS */
+
+h1{
+    font-family:Georgia,serif;
+
+    font-size:
+    clamp(42px,10vw,72px);
+
+    margin-bottom:10px;
+
+    background:
+    linear-gradient(
+        90deg,
+        #fff,
+        #f5c8e9,
+        #d8b7f4,
+        #fff
+    );
+
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+h2{
+    font-family:Georgia,serif;
+
+    font-size:
+    clamp(30px,7vw,48px);
+
+    color:#e5bde9;
+
+    margin-bottom:20px;
+
+    text-shadow:
+    0 0 15px rgba(220,170,235,.25);
+}
+
+
+/* TEXTO */
+
+.subtitulo{
+    color:#d9c3dc;
+    margin-bottom:28px;
+    font-size:17px;
+}
+
+p{
+    font-size:18px;
+    line-height:1.8;
+    color:#f8edf7;
+}
+
+.rosa{
+    color:#f3b7d8;
+}
+
+.lila{
+    color:#dcb9ef;
+}
+
+
+/* BOTONES */
+
+.boton{
+    margin-top:30px;
+
+    padding:15px 30px;
+
+    border-radius:30px;
+
+    border:1px solid #d09bc6;
+
+    background:
+    linear-gradient(
+        135deg,
+        #735078,
+        #9a668b
+    );
+
+    color:white;
+
+    font-size:16px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    box-shadow:
+    0 7px 25px rgba(0,0,0,.35);
+}
+
+.boton:hover{
+    transform:
+    translateY(-3px)
+    scale(1.04);
+
+    box-shadow:
+    0 0 25px
+    rgba(235,170,220,.35);
+}
+
+
+/* CARTAS */
+
+.carta{
+    max-width:620px;
+
+    margin:20px auto;
+
+    padding:25px;
+
+    border-radius:22px;
+
+    background:
+    rgba(255,220,245,.055);
+
+    border:
+    1px solid
+    rgba(225,180,225,.25);
+
+    box-shadow:
+    inset 0 0 25px
+    rgba(220,170,235,.04);
+}
+
+.carta p{
+    font-family:Georgia,serif;
+    font-size:19px;
+}
+
+
+/* SORPRESA */
+
+.sorpresa{
+    max-height:0;
+
+    overflow:hidden;
+
+    opacity:0;
+
+    transition:
+    max-height 1s ease,
+    opacity 1s ease;
+
+    font-family:Georgia,serif;
+
+    color:#f1b8d9;
+
+    font-size:22px;
+
+    line-height:1.7;
+}
+
+.sorpresa.mostrar{
+    max-height:250px;
+
+    opacity:1;
+
+    margin-top:22px;
+}
+
+
+/* CANCIÓN */
+
+.cancion{
+    margin-top:22px;
+
+    padding:16px;
+
+    border-left:
+    3px solid #d4a7e4;
+
+    background:
+    rgba(220,180,240,.07);
+
+    border-radius:10px;
+
+    color:#dcbce8;
+
+    font-family:Georgia,serif;
+
+    font-size:17px;
+
+    font-style:italic;
+}
+
+
+/* ESTRELLAS */
+
+.estrella{
+    position:absolute;
+
+    color:#e8c5ef;
+
+    font-size:18px;
+
+    animation:
+    brillar 2.5s infinite;
+}
+
+.e1{
+    top:12%;
+    left:10%;
+}
+
+.e2{
+    top:20%;
+    right:12%;
+    animation-delay:.7s;
+}
+
+.e3{
+    bottom:20%;
+    left:15%;
+    animation-delay:1s;
+}
+
+.e4{
+    bottom:12%;
+    right:18%;
+    animation-delay:1.5s;
+}
+
+.e5{
+    top:45%;
+    left:5%;
+    animation-delay:.3s;
+}
+
+.e6{
+    top:55%;
+    right:6%;
+    animation-delay:1.2s;
+}
+
+
+/* CORAZONES */
+
+.corazon{
+    position:fixed;
+
+    bottom:-30px;
+
+    pointer-events:none;
+
+    z-index:20;
+
+    color:#f0b5d9;
+
+    animation:
+    subir linear forwards;
+}
+
+
+/* FINAL */
+
+.final{
+    font-family:Georgia,serif;
+
+    font-size:23px;
+
+    line-height:1.75;
+
+    color:#f1d8ed;
+}
+
+.final span{
+    color:#efb3d5;
+}
+
+
+/* PIE */
+
+.abajo{
+    margin-top:25px;
+
+    font-size:13px;
+
+    color:#a994aa;
+}
+
+
+/* ANIMACIONES */
+
+@keyframes entrada{
+
+    from{
+        opacity:0;
+        transform:
+        scale(.96)
+        translateY(15px);
+    }
+
+    to{
+        opacity:1;
+        transform:
+        scale(1)
+        translateY(0);
+    }
+
+}
+
+@keyframes flotar{
+
+    50%{
+        transform:
+        translateY(-10px)
+        rotate(-2deg);
+    }
+
+}
+
+@keyframes brillar{
+
+    50%{
+        opacity:.2;
+        transform:scale(.65);
+    }
+
+}
+
+@keyframes subir{
+
+    to{
+        transform:
+        translateY(-110vh)
+        rotate(25deg);
+
+        opacity:0;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- ESTRELLAS -->
+
+<div class="estrella e1">✦</div>
+<div class="estrella e2">✧</div>
+<div class="estrella e3">♡</div>
+<div class="estrella e4">✦</div>
+<div class="estrella e5">✧</div>
+<div class="estrella e6">♡</div>
+
+
+
+<!-- ==================== -->
+<!-- FASE 1 -->
+<!-- ==================== -->
+
+<section class="fase activa" id="fase1">
+
+<div class="contenido">
+
+    <img
+    src="kuromi1.png"
+    class="kuromi"
+    onerror="this.style.display='none'"
+    >
+
+    <div style="font-size:55px">
+        🌙
+    </div>
+
+    <h1>
+        Hola, Lunita ♡
+    </h1>
+
+    <div class="subtitulo">
+
+        Tengo algo que quiero decirte amor mío...
+
+    </div>
+
+    <button
+    class="boton"
+    onclick="siguiente()">
+
+        Entrar ❤️
+
+    </button>
+
+</div>
+
+</section>
+
+
+
+<!-- ==================== -->
+<!-- FASE 2 -->
+<!-- ==================== -->
+
+<section class="fase" id="fase2">
+
+<div class="contenido">
+
+    <img
+    src="kuromi2.png"
+    class="kuromi-pequena"
+    onerror="this.style.display='none'"
+    >
+
+    <h2>
+        Para ti, mi Dannita 🖤
+    </h2>
+
+    <p>
+
+        Amor , mi cielo , Dannita, Lunita...
+
+        <br><br>
+
+        No importa cómo te diga,
+        porque cada uno de esos nombres
+        tiene algo especial para mí.
+
+        <br><br>
+
+        Eres esa personita que poco a poco
+        se fue ganando un lugar muy bonito
+        dentro de mi corazón.
+
+        <br><br>
+
+        Y quiero que sepas que me encanta
+        poder llamarte mi Lunita.
+
+    </p>
+
+    <button
+    class="boton"
+    onclick="siguiente()">
+
+        Continuar 💗
+
+    </button>
+
+</div>
+
+</section>
+
+
+
+<!-- ==================== -->
+<!-- FASE 3 -->
+<!-- ==================== -->
+
+<section class="fase" id="fase3">
+
+<div class="contenido">
+
+    <img
+    src="kuromi3.png"
+    class="kuromi-pequena"
+    onerror="this.style.display='none'"
+    >
+
+    <h2>
+        Quiero que recuerdes esto 🫶🏻
+    </h2>
+
+    <div class="carta">
+
+        <p>
+
+            Quiero que sepas que
+
+            <span class="rosa">
+            siempre voy a estar para ti
+            </span>.
+
+            <br><br>
+
+            No solamente cuando todo esté
+            bien y tengas motivos para sonreír.
+
+            <br><br>
+
+            También cuando estés triste,
+            cuando tengas un día difícil,
+            cuando algo te preocupe
+            o simplemente necesites compañía.
+
+            <br><br>
+
+            <span class="lila">
+            Nunca quiero que sientas que tienes
+            que pasar por todo sola.
+            </span>
+
+        </p>
+
+    </div>
+
+    <button
+    class="boton"
+    onclick="siguiente()">
+
+        Seguir ❤️
+
+    </button>
+
+</div>
+
+</section>
+
+
+
+<!-- ==================== -->
+<!-- FASE 4 -->
+<!-- ==================== -->
+
+<section class="fase" id="fase4">
+
+<div class="contenido">
+
+    <img
+    src="kuromi4.png"
+    class="kuromi-pequena"
+    onerror="this.style.display='none'"
+    >
+
+    <h2>
+        Una promesa para ti 💗
+    </h2>
+
+    <div class="carta">
+
+        <p>
+
+            No puedo prometerte que todos
+            los días serán perfectos.
+
+            <br><br>
+
+            Pero sí puedo prometerte que
+            voy a intentar estar a tu lado
+            en cada momento que pueda.
+
+            <br><br>
+
+            En las buenas.
+
+            <br>
+
+            En las malas.
+
+            <br>
+
+            Cuando estés feliz.
+
+            <br>
+
+            Cuando estés triste.
+
+            <br>
+
+            Cuando todo vaya bien
+            y cuando las cosas se compliquen.
+
+            <br><br>
+
+            <span class="rosa">
+            Siempre tendrás mi apoyo,
+            mi cariño y mi compañía.
+            </span>
+
+        </p>
+
+    </div>
+
+    <button
+    class="boton"
+    onclick="siguiente()">
+
+        Hay algo más... ♡
+
+    </button>
+
+</div>
+
+</section>
+
+
+
+<!-- ==================== -->
+<!-- FASE 5 -->
+<!-- ==================== -->
+
+<section class="fase" id="fase5">
+
+<div class="contenido">
+
+    <img
+    src="kuromi5.png"
+    class="kuromi"
+    onerror="this.style.display='none'"
+    >
+
+    <h2>
+        Una cosita más 🥰
+    </h2>
+
+    <p>
+
+        Hay una canción que me recuerda
+        a ese sentimiento de querer estar
+        junto a alguien incluso cuando
+        la vida se pone difícil.
+        Gracias a ti conocí esa canción y 
+        cada vez que la escucho solamente pienso en ti 😻 
+
+    </p>
+
+    <div class="cancion">
+
+        “Join me in death”
+
+        <br><br>
+
+        — HIM ♡
+
+    </div>
+
+    <button
+    class="boton"
+    onclick="mostrarAmor()">
+
+        Descubrir ♡
+
+    </button>
+
+    <div
+    class="sorpresa"
+    id="amor">
+
+        Te amo, mi Lunita ♡
+
+        <br>
+
+        Y me encanta poder llamarte
+        mi Dannita bonita.
+
+        <br>
+
+        🌙💗
+
+    </div>
+
+    <button
+    class="boton"
+    id="botonFinal"
+    style="display:none"
+    onclick="siguiente()">
+
+        Última cosita... ♡
+
+    </button>
+
+</div>
+
+</section>
+
+
+
+<!-- ==================== -->
+<!-- FASE 6 -->
+<!-- ==================== -->
+
+<section class="fase" id="fase6">
+
+<div class="contenido">
+
+    <img
+    src="kuromi6.png"
+    class="kuromi"
+    onerror="this.style.display='none'"
+    >
+
+    <div style="font-size:50px">
+        🌙
+    </div>
+
+    <h2>
+        Para mi Lunita 🖤
+    </h2>
+
+    <p class="final">
+
+        Si algún día necesitas recordar
+        que tienes a alguien que estará
+        contigo...
+
+        <br><br>
+
+        recuerda esto:
+
+        <br><br>
+
+        <span>
+        En las buenas,
+        en las malas,
+        en los momentos felices
+        y en los momentos difíciles...
+        </span>
+
+        <br><br>
+
+        <span>
+        siempre voy a estar para ti.
+        </span>
+
+        <br><br>
+
+        No importa la circunstancia,
+        no importa el día.
+
+        <br><br>
+
+        <span>
+        Aquí voy a estar, mi amor♡
+        </span>
+
+    </p>
+
+    <button
+    class="boton"
+    onclick="inicio()">
+
+        Volver al inicio 🌙
+
+    </button>
+
+    <div class="abajo">
+
+        Hecho con cariño para mi Dannita ♡
+
+    </div>
+
+</div>
+
+</section>
+
+
+
+<script>
+
+let faseActual=1;
+
+
+/* CAMBIAR DE FASE */
+
+function siguiente(){
+
+    document
+    .getElementById("fase"+faseActual)
+    .classList.remove("activa");
+
+    faseActual++;
+
+    document
+    .getElementById("fase"+faseActual)
+    .classList.add("activa");
+
+    corazones();
+
+}
+
+
+/* VOLVER AL INICIO */
+
+function inicio(){
+
+    document
+    .getElementById("fase"+faseActual)
+    .classList.remove("activa");
+
+    faseActual=1;
+
+    document
+    .getElementById("fase1")
+    .classList.add("activa");
+
+}
+
+
+/* MOSTRAR MENSAJE */
+
+function mostrarAmor(){
+
+    document
+    .getElementById("amor")
+    .classList.add("mostrar");
+
+    document
+    .getElementById("botonFinal")
+    .style.display="inline-block";
+
+    corazones();
+
+}
+
+
+/* CORAZONES */
+
+function corazones(){
+
+    for(
+        let i=0;
+        i<25;
+        i++
+    ){
+
+        let corazon=
+        document.createElement("div");
+
+        corazon.className="corazon";
+
+        let formas=[
+            "🌙",
+            "♥",
+            "💗",
+            "✦",
+            "😻"
+        ];
+
+        corazon.textContent=
+        formas[
+            Math.floor(
+                Math.random()*
+                formas.length
+            )
+        ];
+
+        corazon.style.left=
+        Math.random()*100+"vw";
+
+        corazon.style.fontSize=
+        (14+
+        Math.random()*24)+"px";
+
+        corazon.style.animationDuration=
+        (3+
+        Math.random()*4)+"s";
+
+        document.body.appendChild(
+            corazon
+        );
+
+        setTimeout(
+            function(){
+
+                corazon.remove();
+
+            },
+            7000
+        );
+
+    }
+
+}
+
+
+/* CORAZONES AUTOMÁTICOS */
+
+setInterval(
+
+function(){
+
+    let corazon=
+    document.createElement("div");
+
+    corazon.className="corazon";
+
+    corazon.textContent=
+    Math.random()>.4
+    ? "♡"
+    : "✦";
+
+    corazon.style.left=
+    Math.random()*100+"vw";
+
+    corazon.style.fontSize=
+    (12+
+    Math.random()*18)+"px";
+
+    corazon.style.animationDuration=
+    (5+
+    Math.random()*4)+"s";
+
+    document.body.appendChild(
+        corazon
+    );
+
+    setTimeout(
+        function(){
+
+            corazon.remove();
+
+        },
+        9000
+    );
+
+},
+1200
+);
+
+</script>
+
+</body>
+</html>
