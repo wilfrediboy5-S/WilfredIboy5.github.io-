@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Para mi Lunita ♡</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    font-family:Arial, sans-serif;
+    color:white;
+
+    background:
+    radial-gradient(circle at 20% 20%, #4b2143, transparent 30%),
+    radial-gradient(circle at 80% 80%, #32204d, transparent 30%),
+    #0b080f;
+}
+
+.contenedor{
+    width:90%;
+    max-width:700px;
+    padding:45px 25px;
+    text-align:center;
+
+    background:rgba(27,17,31,.88);
+    border:1px solid #75435e;
+    border-radius:30px;
+
+    box-shadow:
+    0 0 40px rgba(0,0,0,.8),
+    inset 0 0 30px rgba(255,255,255,.03);
+
+    animation:entrada 1.5s ease;
+}
+
+.luna{
+    font-size:60px;
+    animation:flotar 3s ease-in-out infinite;
+}
+
+h1{
+    margin-top:5px;
+    font-family:Georgia,serif;
+    font-size:clamp(42px,9vw,70px);
+
+    background:linear-gradient(
+        90deg,
+        #ffffff,
+        #ffb1d9,
+        #d9a8ff,
+        #ffffff
+    );
+
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+.subtitulo{
+    margin-top:8px;
+    margin-bottom:28px;
+    color:#d9bfd5;
+}
+
+.mensaje{
+    max-width:600px;
+    margin:auto;
+    font-size:18px;
+    line-height:1.8;
+    color:#f8eaf5;
+}
+
+.mensaje span{
+    color:#ffb4da;
+}
+
+button{
+    margin-top:30px;
+    padding:14px 25px;
+
+    border:1px solid #b76b98;
+    border-radius:30px;
+
+    background:#542542;
+    color:white;
+
+    font-size:16px;
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+button:hover{
+    transform:scale(1.05);
+    box-shadow:0 0 20px rgba(255,110,180,.3);
+}
+
+.sorpresa{
+    max-height:0;
+    overflow:hidden;
+    opacity:0;
+
+    transition:1s;
+
+    font-family:Georgia,serif;
+    font-size:21px;
+    line-height:1.7;
+    color:#ffb9dd;
+}
+
+.sorpresa.mostrar{
+    max-height:250px;
+    opacity:1;
+    margin-top:25px;
+}
+
+.abajo{
+    margin-top:25px;
+    font-size:13px;
+    color:#9d899c;
+}
+
+.corazon{
+    position:fixed;
+    bottom:-30px;
+    pointer-events:none;
+
+    animation:subir linear forwards;
+}
+
+@keyframes entrada{
+
+    from{
+        opacity:0;
+        transform:translateY(30px) scale(.95);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+
+}
+
+@keyframes flotar{
+
+    50%{
+        transform:translateY(-10px) rotate(-4deg);
+    }
+
+}
+
+@keyframes subir{
+
+    to{
+        transform:translateY(-110vh) rotate(25deg);
+        opacity:0;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="contenedor">
+
+    <div class="luna">🌙</div>
+
+    <h1>Para mi Lunita</h1>
+
+    <div class="subtitulo">
+        Mi Dannita bonita ♡
+    </div>
+
+    <div class="mensaje">
+
+        Quiero que nunca olvides algo, Danna:
+        <span>siempre voy a estar para ti</span>.
+
+        En los días bonitos, cuando todo salga bien
+        y tengamos muchas razones para sonreír,
+        pero también en esos días en los que las cosas
+        no estén bien y sientas que todo pesa un poquito más.
+
+        <br><br>
+
+        No tienes que pasar por nada sola.
+        Quiero acompañarte, escucharte, cuidarte
+        y recordarte lo especial que eres para mí.
+
+        <br><br>
+
+        <span>
+        En las buenas, en las malas y en cualquier
+        circunstancia, aquí voy a estar para ti.
+        </span>
+
+    </div>
+
+    <button onclick="sorpresa()">
+        Toca aquí, Lunita ♡
+    </button>
+
+    <div class="sorpresa" id="sorpresa">
+
+        <br>
+
+        Y si algún día dudas de cuánto me importas,
+        vuelve a recordar esto:
+
+        <br>
+
+        <span>
+        Aquí tienes a alguien que quiere verte feliz,
+        cuidarte y estar a tu lado 🌙♡
+        </span>
+
+    </div>
+
+    <div class="abajo">
+        Con cariño, para mi Lunita ♡
+    </div>
+
+</div>
+
+
+<script>
+
+function sorpresa(){
+
+    document
+    .getElementById("sorpresa")
+    .classList.toggle("mostrar");
+
+    crearCorazones();
+
+}
+
+function crearCorazones(){
+
+    for(let i=0;i<20;i++){
+
+        let corazon=document.createElement("div");
+
+        corazon.className="corazon";
+
+        let figuras=[
+            "♡",
+            "♥",
+            "✦",
+            "💗"
+        ];
+
+        corazon.textContent=
+        figuras[Math.floor(Math.random()*figuras.length)];
+
+        corazon.style.left=
+        Math.random()*100+"vw";
+
+        corazon.style.fontSize=
+        (14+Math.random()*22)+"px";
+
+        corazon.style.animationDuration=
+        (3+Math.random()*3)+"s";
+
+        document.body.appendChild(corazon);
+
+        setTimeout(function(){
+
+            corazon.remove();
+
+        },6500);
+
+    }
+
+}
+
+setInterval(function(){
+
+    let corazon=document.createElement("div");
+
+    corazon.className="corazon";
+
+    corazon.textContent=
+    Math.random()>.4 ? "♡" : "✦";
+
+    corazon.style.left=
+    Math.random()*100+"vw";
+
+    corazon.style.fontSize=
+    (12+Math.random()*18)+"px";
+
+    corazon.style.animationDuration=
+    (5+Math.random()*4)+"s";
+
+    document.body.appendChild(corazon);
+
+    setTimeout(function(){
+
+        corazon.remove();
+
+    },9000);
+
+},1000);
+
+</script>
+
+</body>
+</html>
